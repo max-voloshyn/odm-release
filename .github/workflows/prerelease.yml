@@ -17,14 +17,21 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-      - run: npm ci --workspaces
+      - run: npm ci
 
       - name: Publish prerelease
         run: |
-          # Use changesets to create a prerelease with custom template
-          # The template will generate versions like: 1.8.0-next.3.a1b2c3d
+          BASE=$(node -p 'require("./packages/odm/package.json").version')
+          NEXT=$(npx semver "$BASE" -i minor)
+
+          MAX=$(npm view mv-odm versions --json | \
+            node -e "const l=JSON.parse(require('fs').readFileSync(0)); \
+              const m=l.filter(v=>v.startsWith('${NEXT}-next.')) \
+                .map(v=>+v.split('.')[3]||0); \
+              console.log(Math.max(0,...m))")
+          CTR=$((MAX+1))
           SHA=${GITHUB_SHA::7}
-          npx changeset version --snapshot --snapshot-prerelease-template "next.{{count}}.${SHA}"
+          npx changeset version --snapshot --snapshot-prerelease-template "next.${CTR}.${SHA}"
           
           # Publish all workspaces to next tag
           npm run publish:next 
