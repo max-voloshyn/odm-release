@@ -1,0 +1,30 @@
+name: Preview
+on:
+  push: 
+    branches: [main]
+
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Required for changesets to work properly
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+      - run: npm ci --workspaces
+
+      - name: Publish prerelease
+        run: |
+          # Use changesets to create a prerelease with custom template
+          # The template will generate versions like: 1.8.0-next.3.a1b2c3d
+          SHA=${GITHUB_SHA::7}
+          npx changeset version --snapshot --snapshot-prerelease-template "next.{{count}}.${SHA}"
+          
+          # Publish all workspaces to next tag
+          npm run publish:next 
