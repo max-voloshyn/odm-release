@@ -1,0 +1,20 @@
+{
+  "name": "odm-release",
+  "version": "0.0.0",
+  "description": "ODM Release Monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=odm && npm run build --workspace=odm",
+    "clean": "npm run clean --workspaces"
+  },
+  "keywords": [
+    "monorepo",
+    "odm",
+    "workspaces"
+  ],
+  "author": "",
+  "license": "MIT"
+} 
