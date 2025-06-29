@@ -7,7 +7,7 @@ env:
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
-  preview:
+  prerelease:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
