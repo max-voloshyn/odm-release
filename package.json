@@ -9,7 +9,8 @@
   "scripts": {
     "build": "npm run build --workspace=mv-odm && npm run build --workspace=mv-odm-backend",
     "clean": "npm run clean --workspaces",
-    "publish": "npm run build && npm publish --workspace=mv-odm-backend && npm publish --workspace=mv-odm",
+    "publish:latest": "npm publish --workspaces --access public",
+    "publish:next": "npm publish --workspaces --tag next --access public",
     "changeset": "changeset",
     "release": "changeset version && changeset publish --access public"
   },
