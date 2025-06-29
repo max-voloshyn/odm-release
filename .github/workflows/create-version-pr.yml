@@ -1,0 +1,14 @@
+name: Version PR
+on:
+  push:
+    branches: [main]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  release-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: changesets/action@v2       # only creates/updates PR 
