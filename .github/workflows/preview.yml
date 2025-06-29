@@ -1,0 +1,32 @@
+name: Preview
+on:
+  push: 
+    branches: [main]
+
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+      - run: npm ci --workspaces
+
+      - name: Build prerelease
+        run: |
+          PKG=mv-odm
+          BASE=$(node -p 'require("./package.json").version')      # e.g. 1.7.0
+          NEXT=$(npx semver "$BASE" -i minor)                       # 1.8.0
+          MAX=$(npm view $PKG versions --json | \
+            node -e "const l=JSON.parse(require('fs').readFileSync(0));\
+              const m=l.filter(v=>v.startsWith('${NEXT}-next.')).map(v=>+v.split('.')[3]||0);\
+              console.log(Math.max(0,...m))")
+          CTR=$((MAX+1))
+          SHA=${GITHUB_SHA::7}
+          npm version --no-git-tag-version "${NEXT}-next.${CTR}.${SHA}"
+      - run: npm publish --tag next --access public 
