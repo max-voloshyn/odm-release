@@ -1,6 +1,5 @@
 ---
-"mv-odm": major
-"mv-odm-backend": minor
+"mv-odm": minor
 ---
 
 Add dummy changes for testing changeset workflow
