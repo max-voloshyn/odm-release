@@ -1,4 +1,4 @@
-name: Version PR
+name: Release PR
 on:
   push:
     branches: [main]
@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: changesets/action@v2       # only creates/updates PR 
+      - uses: changesets/action@v1       # only creates/updates PR 
