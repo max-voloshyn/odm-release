@@ -1,4 +1,5 @@
 // Dummy change for testing changeset workflow
+// Additional dummy change for second PR
 import { BackendService, BackendConfig } from 'mv-odm-backend';
 
 export interface ODMConfig {
@@ -25,6 +26,11 @@ export class ODMService {
 
   public getConfig(): ODMConfig {
     return { ...this.config };
+  }
+
+  // Dummy utility method for testing
+  public getVersion(): string {
+    return '1.0.0';
   }
 }
 

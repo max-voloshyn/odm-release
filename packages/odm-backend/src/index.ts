@@ -1,4 +1,5 @@
 // Dummy change for testing changeset workflow
+// Additional dummy change for second PR
 export interface BackendConfig {
   port: number;
   host: string;
@@ -17,6 +18,11 @@ export class BackendService {
 
   public getConfig(): BackendConfig {
     return { ...this.config };
+  }
+
+  // Dummy utility method for testing
+  public getStatus(): string {
+    return 'running';
   }
 }
 
