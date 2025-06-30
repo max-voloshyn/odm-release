@@ -1,4 +1,4 @@
-import { BackendService, BackendConfig } from 'odm-backend';
+import { BackendService, BackendConfig } from 'mv-odm-backend';
 
 export interface ODMConfig {
   backend: BackendConfig;

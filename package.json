@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspace=mv-odm && npm run build --workspace=mv-odm-backend",
+    "build": "npm run build --workspace=mv-odm-backend && npm run build --workspace=mv-odm",
     "clean": "npm run clean --workspaces",
     "publish:latest": "npm publish --workspaces --access public",
     "publish:next": "npm publish --workspaces --tag next --access public",
