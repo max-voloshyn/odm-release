@@ -19,7 +19,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "mv-odm-backend": "*"
+    "mv-odm-backend": "0.2.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
