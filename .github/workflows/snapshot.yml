@@ -20,6 +20,15 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      - name: Create dummy changeset
+        run: |
+          cat <<EOF > .changeset/snapshot-release.md
+          ---
+          "mv-odm": minor
+          ---
+          Snapshot release
+          EOF
+
       - name: Publish snapshot
         run: |
           npx changeset version --snapshot next
