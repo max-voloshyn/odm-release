@@ -1,3 +1,4 @@
+// Dummy change for testing changeset workflow
 export interface BackendConfig {
   port: number;
   host: string;
