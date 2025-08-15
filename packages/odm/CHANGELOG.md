@@ -1,5 +1,17 @@
 # mv-odm
 
+## 0.6.0
+
+### Minor Changes
+
+- ba56733: ## Internal changes
+
+  - Added script for updating versions
+
+### Patch Changes
+
+- mv-odm-backend@0.6.0
+
 ## 0.5.0
 
 ### Minor Changes
