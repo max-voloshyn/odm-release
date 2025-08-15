@@ -1,6 +1,6 @@
 name: Snapshot
 on:
-  push: 
+  push:
     branches: [main]
 
 env:
@@ -12,13 +12,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Required for changesets to work properly
+          fetch-depth: 0 # Required for changesets to work properly
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
       - run: npm ci
       - run: npm run build
+
+      - name: Update wildcard version for internal packages
+        run: node scripts/update-package-versions-for-publishing.mjs
 
       - name: Publish to "latest"
         run: |
