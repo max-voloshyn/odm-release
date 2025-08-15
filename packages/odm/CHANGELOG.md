@@ -1,5 +1,17 @@
 # mv-odm
 
+## 0.5.0
+
+### Minor Changes
+
+- 2e1da73: ## Internal changes
+
+  - Added wildcard to internal dependency
+
+### Patch Changes
+
+- mv-odm-backend@0.5.0
+
 ## 0.4.0
 
 ### Minor Changes
